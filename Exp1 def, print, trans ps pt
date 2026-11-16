@@ -1,0 +1,153 @@
+Exp 1 (password strength):
+#include <stdio.h>   // used for input/output functions
+#include <string.h>
+
+int main()
+{
+    char pass[50];
+
+    int letter = 0, number = 0, special = 0;
+    int strength = 0;
+
+    printf("Enter Password: ");
+    scanf("%s", pass);
+
+    // Check password length
+    if(strlen(pass) >= 80)
+        strength += 20;
+
+    for(int i = 0; pass[i] != '\0'; i++)
+    {
+        // Check letters
+        if((pass[i] >= 'A' && pass[i] <= 'Z') ||
+           (pass[i] >= 'a' && pass[i] <= 'z'))
+            letter = 1;
+
+        // Check numbers
+        else if(pass[i] >= '0' && pass[i] <= '9')
+            number = 1;
+
+        // Check special characters
+        else
+            special = 1;
+    }
+
+    if(letter)
+        strength += 20;
+
+    if(number)
+        strength += 20;
+
+    if(special)
+        strength += 20;
+
+    int upper = 0, lower = 0;
+
+    for(int i = 0; pass[i] != '\0'; i++)
+    {
+        if(pass[i] >= 'A' && pass[i] <= 'Z')
+            upper = 1;
+
+        if(pass[i] >= 'a' && pass[i] <= 'z')
+            lower = 1;
+    }
+
+    if(upper && lower)
+        strength += 20;
+
+    printf("\nPassword Strength = %d\n", strength);
+
+    if(strength >= 100)
+        printf("Strong Password");
+
+    else if(strength >= 50)
+        printf("Medium Password");
+
+    else
+        printf("Weak Password");
+
+    return 0;
+}
+
+
+--------------------------------------------------------------------------------------------------------------------------------Default password:
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char defaultPass[20] = "admin123";
+
+    char enteredPass[20];
+
+    char newPass[20];
+
+    printf("Default Password is : %s\n", defaultPass);
+
+    printf("Enter Default Password: ");
+
+    scanf("%s", enteredPass);
+
+    if(strcmp(enteredPass, defaultPass) == 0)
+    {
+        printf("Password changed successfully\n");
+
+        printf("Login with new password\n");
+
+        printf("Enter new Password: ");
+
+        scanf("%s", newPass);
+
+        printf("Login successful with new password");
+    }
+
+    else
+    {
+        printf("Wrong Password");
+    }
+
+    return 0;
+}
+
+
+------------------------------------------------------------------------------------------------------------------------Printed password:
+#include <stdio.h>
+
+int main()
+{
+    char pass[20];
+
+    printf("Enter Password: ");
+
+    scanf("%s", pass);
+
+    printf("\nPassword entered successfully\n");
+
+    printf("Your Password is : %s\n", pass);
+
+    return 0;
+}
+
+
+--------------------------------------------------------------------------------------------------------------------Password transmission:
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char pass[20];
+
+    char trans[20];
+
+    printf("Enter Password to transmit: ");
+
+    scanf("%s", pass);
+
+    strcpy(trans, pass);
+
+    printf("Password transmitted successfully\n");
+
+    printf("Password is transmitted in plain text");
+
+    return 0;
+}
