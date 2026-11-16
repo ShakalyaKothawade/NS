@@ -1,0 +1,124 @@
+Exp 3 (substitution cipher):
+#include <stdio.h>
+
+int main()
+{
+    char text[100], cipher[100];
+    int i;
+
+    char lower[] = "1@3#5%7&9!abcdefghijklmnop";
+    char upper[] = "2^4*6(8)0+ABCDEFGHIJKLMNOP";
+
+    printf("Enter text: ");
+    gets(text);
+
+    for(i = 0; text[i] != '\0'; i++)
+    {
+        if(text[i] >= 'a' && text[i] <= 'z')
+            cipher[i] = lower[text[i] - 'a'];
+
+        else if(text[i] >= 'A' && text[i] <= 'Z')
+            cipher[i] = upper[text[i] - 'A'];
+
+        else
+            cipher[i] = text[i];
+    }
+
+    cipher[i] = '\0';
+
+    printf("Plain text : %s\n", text);
+
+    printf("Cipher text : %s\n", cipher);
+
+    return 0;
+}
+
+
+----------------------------------------------------------------------------Transposition cipher:
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char text[100], cipher[100], plain[100];
+    int cols, i, j, k = 0;
+
+    printf("Enter text: ");
+    gets(text);
+
+    printf("Enter column size: ");
+    scanf("%d", &cols);
+
+    // Encryption
+    for(i = 0; i < cols; i++)
+    {
+        for(j = i; j < strlen(text); j = j + cols)
+        {
+            cipher[k++] = text[j];
+        }
+    }
+
+    cipher[k] = '\0';
+
+    printf("Encrypted text: %s\n", cipher);
+
+    // Decryption
+    k = 0;
+
+    for(i = 0; i < cols; i++)
+    {
+        for(j = i; j < strlen(text); j = j + cols)
+        {
+            plain[j] = cipher[k++];
+        }
+    }
+
+    plain[strlen(text)] = '\0';
+
+    printf("Decrypted text: %s", plain);
+
+    return 0;
+}
+
+
+---------------------------------------------------------------------------------Ceaser cipher:
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char text[100] = "ATTACKATONCE";
+    char cipher[100];
+
+    int shift = 4;
+    int i;
+
+    for(i = 0; text[i] != '\0'; i++)
+    {
+        if(text[i] >= 'A' && text[i] <= 'Z')
+        {
+            cipher[i] = ((text[i] - 'A' + shift) % 26) + 'A';
+        }
+
+        else if(text[i] >= 'a' && text[i] <= 'z')
+        {
+            cipher[i] = ((text[i] - 'a' + shift) % 26) + 'a';
+        }
+
+        else
+        {
+            cipher[i] = text[i];
+        }
+    }
+
+    cipher[i] = '\0';
+
+    printf("Text : %s\n", text);
+
+    printf("Shift : %d\n", shift);
+
+    printf("Cipher : %s", cipher);
+
+    return 0;
+}
+
