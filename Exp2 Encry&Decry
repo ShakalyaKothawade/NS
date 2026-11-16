@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main()
+{
+    char str[100];
+    int choice, i;
+    printf("1. To Encrypt\n");
+    printf("2. To Decrypt\n");
+    printf("Enter choice: ");
+    scanf("%d", &choice);
+    printf("Enter text: ");
+    scanf("%s", str);
+    for(i = 0; str[i] != '\0'; i++)
+    {
+        if(choice == 1)
+            str[i] = str[i] + 3;
+        else if(choice == 2)
+            str[i] = str[i] - 3;
+    }
+    if(choice == 1)
+        printf("Encrypted text : %s", str);
+    else if(choice == 2)
+        printf("Decrypted text : %s", str);
+    else
+        printf("Invalid Choice");
+    return 0;
+}
